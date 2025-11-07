@@ -46,8 +46,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //OkHTTP
-    /*implementation(libs.okhttp)
-    implementation(libs.okhttp.logging.interceptor)*/
+    implementation(libs.okhttp.logging.interceptor)
 
     //Retrofit
     implementation(libs.retrofit)

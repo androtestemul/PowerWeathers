@@ -1,18 +1,21 @@
 package com.apska.power.di
 
+import com.apska.domain.repository.WeatherRepository
 import com.apska.domain.usecase.GetWeatherRemoteUseCase
 import com.apska.domain.usecase.GetWeatherUseCase
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DomainModule {
+object DomainModule {
 
-    @Binds
-    abstract fun bindGetWeatherUseCase(
-        getWeatherRemoteUseCase: GetWeatherRemoteUseCase
-    ) : GetWeatherUseCase
+    @Provides
+    fun provideGetWeatherUseCase(
+        weatherRepository: WeatherRepository,
+        coroutineDispatcher: CoroutineDispatcher
+    ) : GetWeatherUseCase = GetWeatherRemoteUseCase(weatherRepository, coroutineDispatcher)
 }

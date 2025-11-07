@@ -5,8 +5,9 @@ import com.apska.domain.model.Weather
 import com.apska.domain.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class Repository : WeatherRepository {
+class Repository @Inject constructor() : WeatherRepository {
     override fun getWeather(): Flow<Result<Weather>> = flow {
         try {
             val response = WeatherApi.api.getWeather()

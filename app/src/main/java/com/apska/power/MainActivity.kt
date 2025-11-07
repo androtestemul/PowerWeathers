@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PowerWeathersTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WeatherScreen(modifier = Modifier.padding(innerPadding))
+                    WeatherScreen(Modifier.padding(innerPadding))
                 }
             }
         }
