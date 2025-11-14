@@ -19,6 +19,7 @@ material = "1.13.0"
 lifecycle-viewmodel-compose = "2.9.1"
 okHttp = "4.12.0"
 kotlinxCoroutines = "1.10.2"
+coil = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,9 +45,10 @@ retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 #okhttp = { group = "com.squareup.okhttp3", name = "okhttp" , version.ref = "okHttp"}
-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor" , version.ref = "okHttp"}
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor" , version.ref = "okHttp" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+coil = { group = "io.coil-kt", name = "coil-compose" , version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,4 +1,4 @@
-package com.apska.power.ui.theme
+package com.apska.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

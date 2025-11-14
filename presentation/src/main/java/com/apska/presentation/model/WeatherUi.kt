@@ -1,6 +1,9 @@
-package com.apska.domain.model
+package com.apska.presentation.model
 
-data class Weather(
+import androidx.compose.runtime.Immutable
+
+@Immutable
+data class WeatherUi(
     val city: String,
     val region: String,
     val country: String,
@@ -12,6 +15,6 @@ data class Weather(
     val windSpeed: String,
     val windDirection: String,
 
-    val hourList: List<WeatherHour> = emptyList(),
-    val dayList: List<WeatherDay> = emptyList()
+    val hourList: List<WeatherHourUi> = emptyList(),
+    val dayList: List<WeatherDayUi> = emptyList()
 )

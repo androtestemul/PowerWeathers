@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="current_weather">Current weather</string>
+    <string name="wind_direction">Wind direction %1$s</string>
+    <string name="wind_speed_kph">Wind speed %1$s km/h</string>
+    <string name="forecast_per_hour">24-hour forecast</string>
+    <string name="n_day_forecast">%1$s-day forecast</string>
+</resources>

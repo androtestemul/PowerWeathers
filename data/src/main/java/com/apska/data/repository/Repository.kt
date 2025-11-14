@@ -1,5 +1,6 @@
 package com.apska.data.repository
 
+import android.util.Log
 import com.apska.data.dataSource.remote.WeatherApi
 import com.apska.domain.model.Weather
 import com.apska.domain.repository.WeatherRepository
@@ -21,6 +22,7 @@ class Repository @Inject constructor() : WeatherRepository {
                 throw IllegalStateException(error)
             }
         } catch (e: Exception) {
+            Log.e("STATE", "Ошибка", e)
             emit(Result.failure(e))
         }
     }
