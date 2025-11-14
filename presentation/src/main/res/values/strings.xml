@@ -5,4 +5,10 @@
     <string name="wind_speed_kph">Wind speed %1$s km/h</string>
     <string name="forecast_per_hour">24-hour forecast</string>
     <string name="n_day_forecast">%1$s-day forecast</string>
+    <string name="error_title">Error</string>
+    <string name="error_text">An error occurred, please try updating your data later.\n\n%1$s</string>
+    <string name="error_refresh">Refresh</string>
+    <string name="error_cancel">Cancel</string>
+    <string name="loading_data">Loading data</string>
+    <string name="no_weather_data">No weather data available.\nPlease try refreshing later.</string>
 </resources>

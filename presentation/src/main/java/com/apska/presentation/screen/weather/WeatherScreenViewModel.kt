@@ -30,16 +30,27 @@ class WeatherScreenViewModel @Inject constructor(
     fun onEvent(event: WeatherScreenEvent) {
         when (event) {
             is WeatherScreenEvent.GetWeatherEvent -> getWeather()
+            is WeatherScreenEvent.DismissError -> dismissError()
         }
     }
 
     private fun getWeather() {
         viewModelScope.launch {
-            _state.update { it.copy(status = WeatherScreenStatus.Loading) }
+            _state.update {
+                it.copy(
+                    status = WeatherScreenStatus.Loading,
+                    errorMessage = null
+                )
+            }
 
             getWeatherUseCase.getWeather()
                 .catch { exception ->
-                    _state.update { it.copy(status = WeatherScreenStatus.Error(exception.message)) }
+                    _state.update {
+                        it.copy(
+                            status = WeatherScreenStatus.Error,
+                            errorMessage = exception.message
+                        )
+                    }
                     Log.e("STATE", "Error getting weather", exception)
                 }
                 .map { result ->
@@ -47,13 +58,28 @@ class WeatherScreenViewModel @Inject constructor(
                 }
                 .collect { result ->
                     result.onSuccess { weather ->
-                        _state.update { it.copy(status = WeatherScreenStatus.Success(weather)) }
+                        _state.update {
+                            it.copy(
+                                status = WeatherScreenStatus.Success,
+                                weatherData = weather,
+                                errorMessage = null
+                            )
+                        }
                     }.onFailure { exception ->
-                        _state.update { it.copy(status = WeatherScreenStatus.Error(exception.message)) }
+                        _state.update {
+                            it.copy(
+                                status = WeatherScreenStatus.Error,
+                                errorMessage = exception.message
+                            )
+                        }
                     }
                 }
             Log.d("STATE", "getWeather: ${_state.value}")
         }
 
+    }
+
+    private fun dismissError() {
+        _state.update { it.copy(errorMessage = null) }
     }
 }

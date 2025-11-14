@@ -5,4 +5,10 @@
     <string name="wind_speed_kph">Скорость ветра %1$s км/ч</string>
     <string name="forecast_per_hour">Прогноз на 24 часа</string>
     <string name="n_day_forecast">%1$s-дневный прогноз</string>
+    <string name="error_title">Ошибка</string>
+    <string name="error_text">Произошла ошибка, попробуйте обновить данные позже.\n\n%1$s</string>
+    <string name="error_refresh">Обновить</string>
+    <string name="error_cancel">Отмена</string>
+    <string name="loading_data">Идет загрузка данных</string>
+    <string name="no_weather_data">Нет данных о погоде.\nПопробуйте обновить данные позже.</string>
 </resources>
