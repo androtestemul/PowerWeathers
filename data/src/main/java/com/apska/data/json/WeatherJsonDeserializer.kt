@@ -29,8 +29,10 @@ class WeatherJsonDeserializer : JsonDeserializer<Weather> {
                 if (index == 0) {
                     tempMin = element.asJsonObject.getAsJsonObject("day").get("mintemp_c").asString
                     tempMax = element.asJsonObject.getAsJsonObject("day").get("maxtemp_c").asString
+                }
 
-                    fillHourList(element, hourList)
+                if (index <= 1) {
+                    fillHourList(index, element, hourList)
                 }
 
                 fillDayList(element, dayList)
@@ -54,11 +56,19 @@ class WeatherJsonDeserializer : JsonDeserializer<Weather> {
         )
     }
 
-    private fun fillHourList(element: JsonElement, hourList: MutableList<WeatherHour>) {
-        val currentEpochSeconds = System.currentTimeMillis() / 1000
+    private fun fillHourList(index: Int, element: JsonElement, hourList: MutableList<WeatherHour>) {
+        val currentTime = System.currentTimeMillis()
+        val currentEpochSeconds = currentTime / 1000
+        val nextDayEpochSeconds = (currentTime + 24 * 60 * 60 * 1000L) / 1000
 
         element.asJsonObject.getAsJsonArray("hour")
-            .filter { it.asJsonObject.get("time_epoch").asLong >= currentEpochSeconds }
+            .filter {
+                if (index == 0) {
+                    it.asJsonObject.get("time_epoch").asLong >= currentEpochSeconds
+                } else {
+                    it.asJsonObject.get("time_epoch").asLong < nextDayEpochSeconds
+                }
+            }
             .forEach {
                 hourList.add(
                     WeatherHour(

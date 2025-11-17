@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.apska.presentation.R
+import com.apska.presentation.extentions.isMidnight
+import com.apska.presentation.extentions.toDateMonth
 import com.apska.presentation.extentions.toHours
 import com.apska.presentation.model.WeatherHourUi
 import com.apska.presentation.ui.theme.PowerWeathersTheme
@@ -32,8 +34,14 @@ fun WeatherHourItem(weatherHour: WeatherHourUi) {
             //.height(120.dp)
             .width(70.dp)
     ) {
+        val time = if (weatherHour.dateTime.isMidnight()) {
+            weatherHour.dateTime.toDateMonth()
+        } else {
+            weatherHour.dateTime.toHours()
+        }
+
         Text(
-            text = weatherHour.dateTime.toHours(),
+            text = time,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
