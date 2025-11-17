@@ -32,6 +32,7 @@ import com.apska.presentation.extentions.toFormattedDateTime
 import com.apska.presentation.model.WeatherDayUi
 import com.apska.presentation.model.WeatherHourUi
 import com.apska.presentation.model.WeatherUi
+import com.apska.presentation.ui.view.WindDirectionIndicator
 
 @Composable
 fun ScreenSuccess(
@@ -80,7 +81,7 @@ fun CurrentWeather(weather: WeatherUi) {
             Spacer(modifier = Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = "${weather.tempCurrent} °C",
+                    text = stringResource(R.string.n_degrees_celsius, weather.tempCurrent),
                     fontSize = 65.sp
                 )
                 Spacer(modifier = Modifier.width(16.dp))
@@ -88,9 +89,9 @@ fun CurrentWeather(weather: WeatherUi) {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "min ${weather.tempMin} °C")
+                    Text(text = stringResource(R.string.n_degrees_celsius, weather.tempMin))
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text(text = "max ${weather.tempMax} °C")
+                    Text(text = stringResource(R.string.n_degrees_celsius, weather.tempMax))
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -99,10 +100,27 @@ fun CurrentWeather(weather: WeatherUi) {
                 fontSize = 32.sp,
                 lineHeight = 36.sp
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = stringResource(R.string.wind_speed_kph, weather.windSpeed),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = stringResource(R.string.wind_speed_kph, weather.windSpeed))
+            Text(
+                text = stringResource(R.string.wind_direction, weather.windDirection),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = stringResource(R.string.wind_direction, weather.windDirection))
+            WindDirectionIndicator(
+                degrees = weather.windDegree,
+                textColor = Color.White,
+                modifier = Modifier.fillMaxWidth()
+                    .align(Alignment.CenterHorizontally)
+            )
         }
     }
 }

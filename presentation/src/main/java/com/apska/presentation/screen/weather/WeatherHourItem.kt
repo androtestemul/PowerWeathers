@@ -13,11 +13,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.apska.presentation.R
 import com.apska.presentation.extentions.toHours
 import com.apska.presentation.model.WeatherHourUi
 import com.apska.presentation.ui.theme.PowerWeathersTheme
@@ -60,7 +62,7 @@ fun WeatherHourItem(weatherHour: WeatherHourUi) {
         }
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "${weatherHour.tempCurrent} °C",
+            text = stringResource(R.string.n_degrees_celsius, weatherHour.tempCurrent),
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(),
         )
