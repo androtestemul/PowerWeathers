@@ -139,7 +139,8 @@ private fun WeatherViewPreview() {
                     tempMin = "5.2",
                     tempMax = "6.1",
                     windSpeed = "5.4",
-                    windDirection = "E",
+                    windDirection = "SE",
+                    windDegree = 45f,
                     hourList = hourList,
                     dayList = dayList
                 )

@@ -31,6 +31,7 @@ fun Weather.toUiModel() = WeatherUi(
     tempMax = tempMax,
     windSpeed = windSpeed,
     windDirection = windDirection,
+    windDegree = windDegree,
     hourList = hourList.map { it.toUiModel() },
     dayList = dayList.map { it.toUiModel() }
 )

@@ -47,6 +47,7 @@ class WeatherJsonDeserializer : JsonDeserializer<Weather> {
             tempMax = tempMax,
             windSpeed = current.asJsonObject.get("wind_kph").asString,
             windDirection = current.asJsonObject.get("wind_dir").asString,
+            windDegree = current.asJsonObject.get("wind_degree").asFloat,
 
             hourList = hourList,
             dayList = dayList

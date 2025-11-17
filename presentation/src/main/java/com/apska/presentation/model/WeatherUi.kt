@@ -14,6 +14,7 @@ data class WeatherUi(
     val tempMax: String,
     val windSpeed: String,
     val windDirection: String,
+    val windDegree: Float,
 
     val hourList: List<WeatherHourUi> = emptyList(),
     val dayList: List<WeatherDayUi> = emptyList()
