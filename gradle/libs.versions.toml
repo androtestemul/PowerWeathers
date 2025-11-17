@@ -20,6 +20,8 @@ lifecycle-viewmodel-compose = "2.9.1"
 okHttp = "4.12.0"
 kotlinxCoroutines = "1.10.2"
 coil = "2.7.0"
+mockk = "1.14.6"
+turbine = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,7 +50,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor" , version.ref = "okHttp" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 coil = { group = "io.coil-kt", name = "coil-compose" , version.ref = "coil" }
+mockk = { group = "io.mockk", name = "mockk" , version.ref = "mockk" }
+turbine = { group = "app.cash.turbine", name = "turbine" , version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

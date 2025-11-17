@@ -1,6 +1,5 @@
 package com.apska.presentation.screen.weather
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apska.domain.usecase.GetWeatherUseCase
@@ -51,7 +50,6 @@ class WeatherScreenViewModel @Inject constructor(
                             errorMessage = exception.message
                         )
                     }
-                    Log.e("STATE", "Error getting weather", exception)
                 }
                 .map { result ->
                     result.map { weather -> weather.toUiModel() }
@@ -74,7 +72,6 @@ class WeatherScreenViewModel @Inject constructor(
                         }
                     }
                 }
-            Log.d("STATE", "getWeather: ${_state.value}")
         }
 
     }
