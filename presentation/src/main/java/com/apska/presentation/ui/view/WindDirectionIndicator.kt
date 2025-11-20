@@ -1,11 +1,19 @@
 package com.apska.presentation.ui.view
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -20,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -33,13 +42,45 @@ fun WindDirectionIndicator(
     textColor: Color = Color.Black
 ) {
     val textMeasurer = rememberTextMeasurer()
+    val rotationAnimatable = remember { Animatable(0f) }
+    val coroutineScope = androidx.compose.runtime.rememberCoroutineScope()
+
+    LaunchedEffect(degrees) {
+        rotationAnimatable.animateTo(
+            targetValue = degrees,
+            animationSpec = tween(
+                durationMillis = 2000,
+                easing = FastOutSlowInEasing
+            )
+        )
+    }
 
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
         Box(
-            modifier = Modifier.size(preferredSize),
+            modifier = Modifier
+                .size(preferredSize)
+                .clickable {
+                    coroutineScope.launch {
+                        var clickAnimationDuration = 200
+                        var easing = LinearEasing
+                        repeat(5) { index ->
+                            if (index == 4) {
+                                clickAnimationDuration = 1500
+                                easing = LinearOutSlowInEasing
+                            }
+                            rotationAnimatable.animateTo(
+                                targetValue = rotationAnimatable.value + 360f,
+                                animationSpec = tween(
+                                    durationMillis = clickAnimationDuration,
+                                    easing = easing
+                                )
+                            )
+                        }
+                    }
+                },
             contentAlignment = Alignment.Center
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
@@ -111,7 +152,7 @@ fun WindDirectionIndicator(
                 }
 
                 // Рисуем стрелку направления ветра
-                rotate(degrees = degrees) {
+                rotate(degrees = rotationAnimatable.value) {
                     val arrowLength = radius - 25.dp.toPx()
                     val arrowStartY = center.y + (radius - 25.dp.toPx())
                     val arrowEndY = center.y - arrowLength
