@@ -5,10 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 class GetWeatherRemoteUseCase(
-    private val weatherRepository: WeatherRepository,
-    private val dispatcher: CoroutineDispatcher
+    private val weatherRepository: WeatherRepository
 ) : GetWeatherUseCase {
-    override suspend fun getWeather() = withContext(dispatcher) {
-        weatherRepository.getWeather()
-    }
+    override fun getWeather() = weatherRepository.getWeather()
 }

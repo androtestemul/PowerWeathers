@@ -39,8 +39,7 @@ class GetWeatherRemoteUseCaseTest {
     fun setup() {
         weatherRepository = mockk()
         useCase = GetWeatherRemoteUseCase(
-            weatherRepository = weatherRepository,
-            dispatcher = Dispatchers.Unconfined
+            weatherRepository = weatherRepository
         )
     }
 

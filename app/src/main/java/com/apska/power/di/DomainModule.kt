@@ -15,7 +15,6 @@ object DomainModule {
 
     @Provides
     fun provideGetWeatherUseCase(
-        weatherRepository: WeatherRepository,
-        coroutineDispatcher: CoroutineDispatcher
-    ) : GetWeatherUseCase = GetWeatherRemoteUseCase(weatherRepository, coroutineDispatcher)
+        weatherRepository: WeatherRepository
+    ) : GetWeatherUseCase = GetWeatherRemoteUseCase(weatherRepository)
 }
